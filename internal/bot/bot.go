@@ -124,7 +124,7 @@ func handleList(bot *tgbotapi.BotAPI, update tgbotapi.Update) {
 	messagesList := make([]string, 0)
 
 	for item, quantity := range counter {
-		messagesList = append(messagesList, fmt.Sprintf("%s x%d\n", item, quantity))
+		messagesList = append(messagesList, fmt.Sprintf("%s x%d", item, quantity))
 	}
 	msg := tgbotapi.NewMessage(update.Message.Chat.ID, strings.Join(messagesList, "\n"))
 	if _, err := bot.Send(msg); err != nil {
