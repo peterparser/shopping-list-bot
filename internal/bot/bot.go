@@ -8,7 +8,6 @@ import (
 	"strings"
 
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
-	"github.com/peterparser/recipe-shop-bot/retriever"
 )
 
 type User struct {
@@ -104,10 +103,10 @@ func handleGid(bot *tgbotapi.BotAPI, update tgbotapi.Update, user *User) {
 
 func handleList(bot *tgbotapi.BotAPI, update tgbotapi.Update) {
 	user := users[update.Message.Chat.ID]
-	planning := retriever.RetrieveDoc(user.Link, 0)
-	recipes := retriever.RetrieveDoc(user.Link, user.Gid)
-	parsedPlan := retriever.ExtractDishFromPlan(planning)
-	parsedRecipes := retriever.BuildRecipes(recipes)
+	planning := RetrieveDoc(user.Link, 0)
+	recipes := RetrieveDoc(user.Link, user.Gid)
+	parsedPlan := ExtractDishFromPlan(planning)
+	parsedRecipes := BuildRecipes(recipes)
 
 	toBuy := make([]string, 0)
 
